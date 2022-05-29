@@ -14,13 +14,14 @@ class CreateRoleTeamTable extends Migration
     public function up()
     {
         Schema::create('role_team', function (Blueprint $table) {
-            $table->id();
+            $table->primary(['role_id', 'team_id', 'user_id']);
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');
-
-            // id on teams is [team_id][user_id]; eg 2131 which means [dentist][taylor]
 
             $table->integer('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');

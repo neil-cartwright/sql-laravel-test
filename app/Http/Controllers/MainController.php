@@ -17,7 +17,7 @@ class MainController extends Controller
         // with() prevents N+1 issues which are multiple database calls
         $users = User::with('teams')->get();
         $teams = Team::with('users')->get();
-        $roles = Role::all();
+        $roles = Role::with('users')->get();
         $permissions = Permission::all();
 
         return view('index', compact(['users', 'teams', 'roles', 'permissions']));

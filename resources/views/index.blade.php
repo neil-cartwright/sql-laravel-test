@@ -22,6 +22,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Users</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td>{{ $team->id }}</td>
                                     <td>{{ $team->name}}</td>
+                                    <td>{{ $team->users->count() }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -69,6 +71,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Users</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +79,7 @@
                                 <tr>
                                     <td>{{ $role->id }}</td>
                                     <td>{{ $role->name}}</td>
+                                    <td>{{$role->users()->count()}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -105,7 +109,7 @@
                 <!-- end of columns  -->
 
                 <hr />
-
+                <!-- pivots -->
                 <div class="columns is-multiline">
                     <div class="column is-12 content">
                         <h1 class="title is-5">Pivot tables</h1>
@@ -191,16 +195,45 @@
                 </div>
 
                 <div class="columns">
-                    <div class="column is-6 is-offset-3">
-                        <div class="notification">
-                            <h1 class="title is-size-6">Questions</h1>
-                            <p>Notes:</p>
-                            <ol>
-                                <li>
-                                    How to add Unique composite ID to Team_User
-                                    table?
-                                </li>
-                            </ol>
+                    <div class="column is-12">
+                        <h1 class="title is-size-6">Role_User</h1>
+                        <p>Lists the users with their associated roles</p>
+                        <table class="table has-text-centered">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Team Name</th>
+                                    <th>Role Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($roles as $role) @foreach($role->users
+                                as $user)
+                                <tr>
+                                    <td>{{$user->name}}</td>
+                                    <td>// team</td>
+                                    <td>{{$role->name}}</td>
+                                </tr>
+                                @endforeach @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-12">
+                        <div class="notification content">
+                            <p>Tasks:</p>
+                            <p>
+                                Provide an efficient query that, given a
+                                certain ...</p><p> a. ... team id, shows all the roles
+                                in the database and how many users are assigned
+                                each role.</p><p> b. ... user id, shows all the teams
+                                in the database and what roles they have in each
+                                team.</p> <p>c. ... user id, shows all the teams and
+                                the roles in the database and whether or not the
+                                user belongs to that team-role.</p>  
+                            </p>
                         </div>
                     </div>
                 </div>

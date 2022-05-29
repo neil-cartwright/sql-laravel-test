@@ -16,7 +16,11 @@ class Team extends Model
 
     public function Users()
     {
-        // pivot table team_user
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function Roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
