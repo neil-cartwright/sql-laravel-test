@@ -40,4 +40,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Teams()
+    {
+        // pivot table team_user
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
+    public function Roles()
+    {
+        return $this->hasManyThrough(Role::class, Team::class);
+    }
 }

@@ -1,0 +1,16 @@
+DB::enableQueryLog(); [...] dd(DB::getQueryLog())
+
+>>> DB::listen(function($sql) {var_dump($sql->sql, $sql->bindings); });
+
+>>> $user->teams
+string(208) "select `teams`.*, `team_user`.`user_id` as `pivot_user_id`, `team_user`.`team_id` as `pivot_team_id` from `teams` inner join `team_user` on `teams`.`id` = `team_user`.`team_id` where `team_user`.`user_id` = ?"
+array(1) {
+  [0]=>
+  int(31)
+}
+
+
+DB::enableQueryLog();
+DB::getQueryLog();
+// super useful
+
