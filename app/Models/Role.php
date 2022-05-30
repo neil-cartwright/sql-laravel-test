@@ -16,7 +16,7 @@ class Role extends Model
 
     public function Permissions()
     {
-        return $this->hasMany(Permission::class);
+        return $this->belongsToMany(Permission::class);
     }
 
     public function Teams()
@@ -27,5 +27,11 @@ class Role extends Model
     public function Users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    //https://laracasts.com/series/whats-new-in-laravel-5-1/episodes/16
+    public function givePermissionTo(Permission $permission)
+    {
+        return $this->permissions()->save($permission);
     }
 }

@@ -45,6 +45,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Teams (from Pivot)</th>
+                                    <th>Roles</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,6 +59,7 @@
                                         <span>{{ $team->name }}</span
                                         >, @endforeach
                                     </td>
+                                    <td>@foreach($user->roles as $role)<span>{{ $role->name }}</span>, @endforeach</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -202,7 +204,7 @@
                             <thead>
                                 <tr>
                                     <th>User Name</th>
-                                    <th>Team Name</th>
+                                    <th>Teams</th>
                                     <th>Role Name</th>
                                 </tr>
                             </thead>
@@ -211,7 +213,9 @@
                                 as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
-                                    <td>// team</td>
+                                    <td>@foreach($user->teams as $teams)
+                                        <span>{{ $teams->name }},</span>
+                                        @endforeach</td>
                                     <td>{{$role->name}}</td>
                                 </tr>
                                 @endforeach @endforeach

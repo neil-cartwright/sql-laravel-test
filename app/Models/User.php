@@ -43,12 +43,13 @@ class User extends Authenticatable
 
     public function Teams()
     {
-        // pivot table team_user
         return $this->belongsToMany(Team::class)->withTimestamps();
     }
 
     public function Roles()
     {
-        return $this->hasManyThrough(Role::class, Team::class);
+        return $this->belongsToMany(Role::class);
     }
+
+    // see also https://laracasts.com/series/whats-new-in-laravel-5-1/episodes/16
 }
